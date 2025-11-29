@@ -1,3 +1,4 @@
+from conexao import get_conexao
 from psycopg2.extras import RealDictCursor
 from flask import jsonify
 
