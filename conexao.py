@@ -1,10 +1,9 @@
 import psycopg2
-from conexao import get_conexao
 
 def get_conexao():
     conn = psycopg2.connect(
         dbname='postgres',
-        user='postgres.mliaizbqrzstuzleuqvf',
+        user='postgres.royfkjapbmqrdoprlydy',
         password='CapivariIfsp',
         host='aws-1-us-east-2.pooler.supabase.com',
         port=6543
