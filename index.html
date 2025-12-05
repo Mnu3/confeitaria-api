@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste de Integração API Flask</title>
+</head>
+<body>
+
+    <h1>Integração API Flask e JavaScript Fetch</h1>
+
+    <button onclick="buscarDadosDaAPI()">
+        Buscar Dados da API
+    </button>
+
+    <hr>
+
+    <h2>Resultados da API:</h2>
+    <div id="saida-dados">
+        <p>Clique no botão para carregar os dados...</p>
+    </div>
+
+    <script>
+        // Cole a função 'buscarDadosDaAPI' e 'exibirDadosNoHTML' aqui
+        // (Ou coloque em um arquivo JS externo e inclua-o)
+        
+        // ... funções que você copiou acima ...
+        
+        function buscarDadosDaAPI() {
+
+            const urlDaApi = 'https://confeitaria-api-t8xb.onrender.com/cardapio';
+
+            fetch(urlDaApi)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erro na requisição: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Dados recebidos:', data);
+                    exibirDadosNoHTML(data);
+                })
+                .catch(error => {
+                    console.error('Houve um problema com a operação fetch:', error.message);
+                    document.getElementById('saida-dados').innerHTML = 
+                        `<p style="color: red;">Não foi possível carregar os dados: ${error.message}</p>`;
+                });
+        }
+        
+        function exibirDadosNoHTML(listaDeItens) {
+            const container = document.getElementById('saida-dados');
+            container.innerHTML = ''; 
+            
+            if (listaDeItens && listaDeItens.length > 0) {
+                let htmlContent = '<ul>';
+                listaDeItens.forEach(item => {
+                    htmlContent += `
+                        <li>
+                            <strong>${item.titulo}</strong>
+                            <p>${item.descricao}</p>
+                        </li>
+                    `;
+                });
+                htmlContent += '</ul>';
+                container.innerHTML = htmlContent;
+            } else {
+                container.innerHTML = '<p>Nenhum dado encontrado na API.</p>';
+            }
+        }
+    </script>
+
+</body>
+</html>
