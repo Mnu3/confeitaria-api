@@ -16,3 +16,4 @@ python-dotenv==1.2.1
 readme-md==2018.11.23
 setuptools==80.9.0
 Werkzeug==3.0.6
+
